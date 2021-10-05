@@ -143,6 +143,7 @@ namespace HotelBooking.UnitTests
         [InlineData("02/10/2021", "01/10/2021")]
         [InlineData("03/10/2021", "01/10/2021")]
         [InlineData("01/11/2021", "01/10/2021")]
+        [InlineData("01/11/2022", "01/10/2021")]
         public void GetFullyOccupiedDates_StartDateNotInTheFuture_ThrowsException(string start, string end)
         {
 
@@ -199,14 +200,12 @@ namespace HotelBooking.UnitTests
         }
 
 
-        [Theory]
-        [InlineData("01/10/2021", "05/10/2021")]
-        [InlineData("03/10/2021", "08/10/2021")]
-        [InlineData("01/10/2021", "03/10/2021")]
-        public void GetFullyOccupiedDates_NumberOfRoomsEqualToBookings_FullList(string start, string end)
+        [Fact]
+        public void GetFullyOccupiedDates_NumberOfRoomsEqualToBookings_NotEmptyList()
         {
-            DateTime dateStart = DateTime.Parse(start);
-            DateTime dateEnd = DateTime.Parse(end);
+
+            DateTime dateStart = DateTime.Parse("01/10/2021");
+            DateTime dateEnd = DateTime.Parse("05/10/2021");
 
 
             List<Room> rooms = new List<Room>
@@ -233,8 +232,10 @@ namespace HotelBooking.UnitTests
 
             IBookingManager bookingManagerMock = new BookingManager(bookingRepositoryMock.Object, roomRepositoryMock.Object);
 
-            Assert.Empty(bookingManagerMock.GetFullyOccupiedDates(dateStart, dateEnd));
+            Assert.NotEmpty(bookingManagerMock.GetFullyOccupiedDates(dateStart, dateEnd));
 
         }
+
+        
     }
 }
