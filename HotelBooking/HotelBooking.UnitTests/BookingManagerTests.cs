@@ -44,8 +44,8 @@ namespace HotelBooking.UnitTests
         }
 
         [Theory]
-        [InlineData("25/10/2021", "30/10/2021")]
-        [InlineData("22/10/2021", "30/10/2021")]
+ 
+        [InlineData("27/10/2021", "30/10/2021")]
         [InlineData("12/11/2021", "20/11/2021")]
         public void CreateBooking_FromDifDates_AssertTrue(string start, string end)
         {
@@ -76,7 +76,7 @@ namespace HotelBooking.UnitTests
         }
 
         [Theory]
-        [InlineData("10/10/2021", "15/10/2021")]
+        [InlineData("17/10/2021", "25/10/2021")]
         [InlineData("09/10/2021", "20/10/2021")]
         [InlineData("15/10/2021", "25/10/2021")]
         public void CreateBooking_FromDifDates_AssertFalse(string start, string end)
